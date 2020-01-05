@@ -22,9 +22,9 @@ public class CharacterInput : MonoBehaviour
         var lookDirection = _camera.transform.forward;
         var mask = LayerMask.GetMask("Interactable");
 
-        if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out var hitinfo, 10, mask))
+        if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out var hitinfo, 100, layerMask: mask))
         {
-            target = hitinfo.transform.gameObject;
+            target = hitinfo.collider.gameObject;
 
             if (_current != target)
             {

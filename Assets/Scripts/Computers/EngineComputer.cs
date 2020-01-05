@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class EngineComputer : MonoBehaviour
 {
+    [SerializeField] private GameObject Ship;
     [SerializeField] private Wire Input1;
+    [SerializeField] private int EnginePower;
 
     [SerializeField]
     public IndicatorLight Light;
@@ -20,5 +22,11 @@ public class EngineComputer : MonoBehaviour
     void Update()
     {
         Light.Colour = Input1.Value == 1 ? LightColour.Green : LightColour.Red;
+        if (Input1.Value > 0)
+        {
+            var shipBody = Ship.GetComponent<Rigidbody>();
+            shipBody.AddForce(new Vector3(1, 0, 0) * EnginePower * Time.deltaTime);
+            //shipBody.velocity = new Vector3(1, 0, 0);
+        }
     }
 }
