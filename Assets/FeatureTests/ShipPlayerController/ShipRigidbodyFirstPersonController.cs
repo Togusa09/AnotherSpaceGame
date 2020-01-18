@@ -78,6 +78,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
 
         public Camera cam;
+        public GameObject playerAnalogue;
         public MovementSettings movementSettings = new MovementSettings();
         public MouseLook mouseLook = new MouseLook();
         public AdvancedSettings advancedSettings = new AdvancedSettings();
@@ -238,6 +239,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 Quaternion velRotation = Quaternion.AngleAxis(transform.eulerAngles.y - oldYRotation, Vector3.up);
                 m_RigidBody.velocity = velRotation * m_RigidBody.velocity;
             }
+
+            playerAnalogue.transform.localPosition = transform.localPosition;
+            playerAnalogue.transform.localRotation = transform.localRotation;
         }
 
         /// sphere cast down just beyond the bottom of the capsule to see if the capsule is colliding round the bottom
